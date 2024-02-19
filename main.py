@@ -1,12 +1,17 @@
 from yolo_utils import load_yolov4_model, load_coco_names, perform_object_detection, draw_bounding_boxes
-from google.colab.patches import cv2_imshow
+# from google.colab.patches import cv2_imshow
+import matplotlib.pyplot as plt
 import cv2
 
 def display_output_image(image):
-    cv2_imshow(image)
+    image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    plt.imshow(image_rgb)
+    plt.axis('off')
+    plt.show()
+#     cv2_imshow(image)
 #     cv2.imshow('Object Replacement', image)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+#     cv2.waitKey(0)
+#     cv2.destroyAllWindows()
     
 def main():
     # Load YOLOv4 model
@@ -14,9 +19,10 @@ def main():
     
     # Load COCO class names
     classes = load_coco_names()
+    print(f"CLASSES: {classes}")
     
     # Read input image
-    image = cv2.imread('books_landscape.jpeg')
+    image = cv2.imread('book_portrait.jpeg')
     
     # Perform Object Detection
     outs = perform_object_detection(net, image)
