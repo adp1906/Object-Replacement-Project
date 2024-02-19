@@ -1,8 +1,6 @@
 import cv2
 import numpy as np
 
-# HHHDDHDJHDDJJDS
-
 def load_yolov4_model():
     return cv2.dnn.readNet('yolov4.cfg', 'yolov4.weights')
                            
