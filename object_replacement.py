@@ -2,7 +2,6 @@ import cv2
 
 def replace_object(image, outs, classes, target_class, replacement_image, conf_threshold=0.5):
     height, width, _ = image.shape
-    print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
     
     for out in outs:
         for detection in out:

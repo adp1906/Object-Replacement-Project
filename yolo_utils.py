@@ -63,7 +63,5 @@ def draw_bounding_boxes(image, outs, classes, target_class='book'):
                 cv2.putText(image, classes[class_id], (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
     else:
         print("No indices found after non-max suppression.")
-        
-    print("End of Loop")
     
     return image
