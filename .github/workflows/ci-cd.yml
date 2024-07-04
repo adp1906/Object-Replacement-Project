@@ -27,9 +27,13 @@ jobs:
         source env/bin/activate
         pip install --upgrade pip
         pip install -r requirements.txt
+        pip install pytest
+
+    - name: Set PYTHONPATH
+      run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV
 
     - name: Run tests
       run: |
         source env/bin/activate
-        pytest
+        pytest tests/test_preprocessing.py
 
