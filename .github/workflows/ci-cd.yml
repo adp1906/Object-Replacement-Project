@@ -36,4 +36,4 @@ jobs:
       run: |
         source env/bin/activate
         pytest tests/test_preprocessing.py
-
+        pytest tests/test_create_tfrecords.py
