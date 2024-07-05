@@ -2,7 +2,7 @@ import os
 from preprocess_data import process_image
 
 input_directory = '/Volumes/Samsung_T5/Private Object Replacement Project/Book Images'
-output_directory = '/Volumes/Samsung_T5/Private Object Replacement Project/Processed Data/StyleGAN'
+output_directory = '/Volumes/Samsung_T5/Private Object Replacement Project/Processed Data/StyleGAN/Processed Data'
 size = (1024, 1024)
 
 if not os.path.exists(output_directory):
