@@ -12,9 +12,9 @@ def _float_feature(value):
 def serialize_example(image):
     feature = {
         'image': _bytes_feature(image.tobytes()),
-        'height': _float_feature([image.shape[0]]),
-        'width': _float_feature([image.shape[1]]),
-        'depth': _float_feature([image.shape[2]])
+        'height': _float_feature(float(image.shape[0])),
+        'width': _float_feature(float(image.shape[1])),
+        'depth': _float_feature(float(image.shape[2]))
     }
     example_proto = tf.train.Example(features=tf.train.Features(feature=feature))
     return example_proto.SerializeToString()
