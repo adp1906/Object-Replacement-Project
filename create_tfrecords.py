@@ -7,7 +7,7 @@ def _bytes_feature(value):
     return tf.train.Feature(bytes_list=tf.train.BytesList(value=[value]))
     
 def _float_feature(value):
-    return tf.train.Feature(float_list=tf.train.FloatList(value=[value ]))
+    return tf.train.Feature(float_list=tf.train.FloatList(value=[value]))
     
 def serialize_example(image):
     feature = {
