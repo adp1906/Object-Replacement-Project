@@ -2,6 +2,9 @@ import tensorflow as tf
 import os
 from PIL import Image
 import numpy as np
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def _bytes_feature(value):
     return tf.train.Feature(bytes_list=tf.train.BytesList(value=[value]))
@@ -24,11 +27,19 @@ def create_tfrecords(output_file, image_dir):
         for filename in os.listdir(image_dir):
             if filename.endswith(".png"):
                 image_path = os.path.join(image_dir, filename)
+                
+                print(f"Processing file: {filename}")
+                print(f"Image Path: {image_path}")
+                
                 with  Image.open(image_path) as img:
                     img_np = np.array(img)
                     example = serialize_example(img_np)
                     writer.write(example)
                     
-output_file = os.getenv('TFRECORDS_FILE', '/default/tfrecords/path')
-image_dir = os.getenv('OUTPUT_DIRECTORY', '/default/output/path')
+output_file = os.getenv('TFRECORDS_FILE')
+image_dir = os.getenv('OUTPUT_DIRECTORY')
+
+print(f"TFRecords File: {output_file}")
+print(f"Image Directory: {image_dir}")
+
 create_tfrecords(output_file, image_dir)
