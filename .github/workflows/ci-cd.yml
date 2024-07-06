@@ -13,9 +13,10 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      INPUT_DIRECTORY: "/home/runner/work/Object-Replacement-Project/Object-Replacement-Project/input"
-      OUTPUT_DIRECTORY: "/home/runner/work/Object-Replacement-Project/Object-Replacement-Project/output"
-      TFRECORDS_FILE: "/home/runner/work/Object-Replacement-Project/Object-Replacement-Project/output/output.tfrecords"
+      INPUT_DIRECTORY: "/Volumes/Samsung_T5/Book_Images"
+      OUTPUT_DIRECTORY: "/Volumes/Samsung_T5/Processed_Data/StyleGAN/Processed_Data"
+      TFRECORDS_FILE: "/Volumes/Samsung_T5/Processed_Data/StyleGAN/TFRecords/output.tfrecords"
+
 
     steps:
     - name: Checkout code
