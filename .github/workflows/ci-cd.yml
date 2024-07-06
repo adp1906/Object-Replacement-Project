@@ -13,10 +13,9 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      INPUT_DIRECTORY: "/Volumes/Samsung_T5/Book_Images"
-      OUTPUT_DIRECTORY: "/Volumes/Samsung_T5/Processed_Data/StyleGAN/Processed_Data"
-      TFRECORDS_FILE: "/Volumes/Samsung_T5/Processed_Data/StyleGAN/TFRecords/output.tfrecords"
-
+      INPUT_DIRECTORY: "${{ github.workspace }}/Book_Images"
+      OUTPUT_DIRECTORY: "${{ github.workspace }}/Processed_Data/StyleGAN/Processed_Data"
+      TFRECORDS_FILE: "${{ github.workspace }}/Processed_Data/StyleGAN/TFRecords/output.tfrecords"
 
     steps:
     - name: Checkout code
