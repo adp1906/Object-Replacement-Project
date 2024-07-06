@@ -29,6 +29,6 @@ def create_tfrecords(output_file, image_dir):
                     example = serialize_example(img_np)
                     writer.write(example)
                     
-output_file = '/Volumes/Samsung_T5/Private Object Replacement Project/Processed Data/StyleGAN/TFRecords'
-image_dir = '/Volumes/Samsung_T5/Private Object Replacement Project/Processed Data/StyleGAN/Processed Data'
+output_file = os.getenv('TFRECORDS_FILE', '/default/tfrecords/path')
+image_dir = os.getenv('OUTPUT_DIRECTORY', '/default/output/path')
 create_tfrecords(output_file, image_dir)
