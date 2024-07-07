@@ -25,21 +25,21 @@ def serialize_example(image):
 def create_tfrecords(output_file, image_dir):
     with tf.io.TFRecordWriter(output_file) as writer:
         for filename in os.listdir(image_dir):
-            if filename.endswith(".png"):
+            if filename.endswith((".jpg", ".jpeg", ".png")):
                 image_path = os.path.join(image_dir, filename)
                 
                 print(f"Processing file: {filename}")
                 print(f"Image Path: {image_path}")
                 
-                with  Image.open(image_path) as img:
-                    img_np = np.array(img)
-                    example = serialize_example(img_np)
-                    writer.write(example)
+                try: 
+                    with Image.open(image_path) as img:
+                        img_np = np.array(img)
+                        example = serialize_example(img_np)
+                        writer.write(example)
+                        print(f"Successfully wrote {filename} to TFRecords.")
+                except Exception as e:
+                    print(f"Error processing file {filename}: {e}")
                     
 output_file = os.getenv('TFRECORDS_FILE')
 image_dir = os.getenv('OUTPUT_DIRECTORY')
-
-print(f"TFRecords File: {output_file}")
-print(f"Image Directory: {image_dir}")
-
 create_tfrecords(output_file, image_dir)

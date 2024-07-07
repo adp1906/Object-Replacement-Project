@@ -19,7 +19,7 @@ for filename in os.listdir(input_directory):
     print(f"Processing file: {filename}")
     if filename.endswith((".jpg", ".jpeg", ".png")):
         input_path = os.path.join(input_directory, filename)
-        output_path = os.path.join(output_directory, filename)
+        output_path = os.path.join(output_directory, os.path.splitext(filename)[0] + '.png')
         print(f"Input Path: {input_path}")
         print(f"Output Path: {output_path}")
         process_image(input_path, output_path, size)
