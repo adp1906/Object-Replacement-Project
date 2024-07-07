@@ -41,6 +41,7 @@ jobs:
       run: |
         mkdir -p $INPUT_DIRECTORY
         mkdir -p $OUTPUT_DIRECTORY
+        mkdir -p $(dirname $TFRECORDS_FILE)
 
     - name: Verify directories
       run: |
