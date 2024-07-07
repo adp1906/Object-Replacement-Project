@@ -42,6 +42,13 @@ jobs:
         mkdir -p $INPUT_DIRECTORY
         mkdir -p $OUTPUT_DIRECTORY
 
+    - name: Verify directories
+      run: |
+        echo "Verifying directories..."
+        ls -l $INPUT_DIRECTORY
+        ls -l $OUTPUT_DIRECTORY
+        ls -l $(dirname $TFRECORDS_FILE)
+
     - name: Verify environment variables
       run: |
         echo "INPUT_DIRECTORY: $INPUT_DIRECTORY"
