@@ -61,3 +61,4 @@ jobs:
         source env/bin/activate
         pytest tests/test_preprocessing.py
         pytest tests/test_create_tfrecords.py
+	pytest tests/test_yolo_utils.py
