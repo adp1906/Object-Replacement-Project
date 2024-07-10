@@ -1,6 +1,24 @@
 import cv2
+import logging
+
+logging.basicConfig(level=logging.INFO)
 
 def replace_object(image, outs, classes, target_class, replacement_image, conf_threshold=0.5):
+    """
+    Replace the detected object in an image with a replacement image.
+    
+    Parameters:
+    image (np.ndarray): The original image.
+    outs (list): Output layers from the YOLO detection model.
+    classes (list): List of class names.
+    target_class (str): The target class to replace.
+    replacement_image (np.ndarray):The image to replace the detected object with.
+    conf_threshold (float): Confidence threshold for detection.
+    
+    Returns:
+    np.ndarray: The image with the detected object replaced.
+    """
+    
     height, width, _ = image.shape
     
     for out in outs:
@@ -18,7 +36,15 @@ def replace_object(image, outs, classes, target_class, replacement_image, conf_t
                 x = int(center_x - w / 2)
                 y = int(center_y - h / 2)
                 
-                # Replace the detected object with replacement image
-                image[y:y+h, x:x+w] = cv2.resize(replacement_image, (w, h), interpolation=cv2.INTER_CUBIC)
+                # Ensure replacement image dimensions match the detected object.
+                if replacement_image.shape[0] != h or replacement_image.shape[1] != w:
+                    replacement_image = cv2.resize(replacement_image, (w, h), interpolation=cv2.INTER_CUBIC)
+                
+                try:
+                    image[y:y+h, x:x+w] = replacement_image
+                    logging.info(f"Replaced detected {target_class} with replacement image.")
+                except Exception as e:
+                    logging.error(f"Error replacing object: {e}")
+                    continue
                 
     return image
