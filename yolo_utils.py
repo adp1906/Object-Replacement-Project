@@ -103,6 +103,10 @@ def draw_bounding_boxes(image: np.ndarray,
             class_id = scores.argmax()
             confidence = scores[class_id]
             
+            if class_id >= len(classes):
+                print(f"Invalid class_id: {class_id} with length of classes: {len(classes)}")
+                continue
+            
             if confidence > conf_threshold:
                 center_x = int(detection[0] * width)
                 center_y = int(detection[1] * height)
@@ -124,6 +128,10 @@ def draw_bounding_boxes(image: np.ndarray,
             x, y, w, h = box
             class_id = class_ids[idx]
             confidence = confidences[idx]
+            
+            if class_id >= len(classes):
+                print(f"Invalid class_id: {class_id} with length of classes: {len(classes)}")
+                continue
             
             if classes[class_id] == target_class:
                 cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), 2)
